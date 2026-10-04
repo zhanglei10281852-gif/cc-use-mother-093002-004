@@ -8,13 +8,13 @@ from skill_recognition.contracts import StandardVersion, EvidenceRecord
 
 class ContractTests(unittest.TestCase):
     def test_record_keeps_version_reference(self):
-        entity = StandardVersion("E-1", "示例实体", 1)
+        entity = StandardVersion("E-1", "示例实体", 1, "2020-01-01")
         record = EvidenceRecord("R-1", entity.entity_id, "已登记")
         self.assertEqual(record.entity_id, "E-1")
 
     def test_invalid_revision_is_rejected(self):
         with self.assertRaises(ValueError):
-            StandardVersion("E-2", "无效版本", 0)
+            StandardVersion("E-2", "无效版本", 0, "2020-01-01")
 
 
 if __name__ == "__main__":

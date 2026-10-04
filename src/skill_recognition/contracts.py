@@ -1,24 +1,11 @@
-"""职业标准与能力证据的基础契约。"""
-from dataclasses import dataclass
+"""基础契约再出口。
 
+类型定义已按领域拆分，保留本模块仅为兼容最早的导入路径：
 
-@dataclass(frozen=True)
-class StandardVersion:
-    entity_id: str
-    display_name: str
-    revision: int
+* :class:`StandardVersion` 见 :mod:`skill_recognition.standards`
+* :class:`EvidenceRecord` 见 :mod:`skill_recognition.evidence`
+"""
+from .evidence import EvidenceRecord
+from .standards import StandardVersion
 
-    def __post_init__(self) -> None:
-        if not self.entity_id or not self.display_name or self.revision < 1:
-            raise ValueError("版本化实体信息不合法")
-
-
-@dataclass(frozen=True)
-class EvidenceRecord:
-    record_id: str
-    entity_id: str
-    category: str
-
-    def __post_init__(self) -> None:
-        if not self.record_id or not self.entity_id or not self.category:
-            raise ValueError("关联记录信息不完整")
+__all__ = ["StandardVersion", "EvidenceRecord"]
